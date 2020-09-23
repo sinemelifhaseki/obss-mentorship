@@ -1,0 +1,100 @@
+dn: dc=obssmentorship,dc=com
+objectclass: top
+objectclass: domain
+objectclass: extensibleObject
+dc: obssmentorship
+
+#Org Units
+dn: ou=groups,dc=obssmentorship,dc=com
+objectclass: top
+objectclass: organizationalUnit
+ou: groups
+
+dn: ou=people,dc=obssmentorship,dc=com
+objectclass: top
+objectclass: organizationalUnit
+ou: people
+
+#People
+dn: uid=mustafa,ou=people,dc=obssmentorship,dc=com
+objectclass: top
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+cn: Mustafa Haseki
+sn: Haseki
+uid: mustafa
+userPassword: $2a$10$c6bSeWPhg06xB1lvmaWNNe4NROmZiSpYhlocU/98HNr2MhIOiSt36
+#benspassword
+
+dn: uid=sinem,ou=people,dc=obssmentorship,dc=com
+objectclass: top
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+cn: Sinem Elif Haseki
+sn: Haseki
+uid: sinem
+userPassword: $2a$10$MF7hYnWLeLT66gNccBgxaONZHbrSMjlUofkp50sSpBw2PJjUqU.zS
+#secret
+
+dn: uid=gulbike,ou=people,dc=obssmentorship,dc=com
+objectclass: top
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+cn: Gulbike Koksal
+sn: Koksal
+uid: gulbike
+userPassword: $2a$10$MF7hYnWLeLT66gNccBgxaONZHbrSMjlUofkp50sSpBw2PJjUqU.zS
+#secret
+
+dn: uid=sibel,ou=people,dc=obssmentorship,dc=com
+objectclass: top
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+cn: Sibel Haseki
+sn: Haseki
+uid: sibel
+userPassword: $2a$10$MF7hYnWLeLT66gNccBgxaONZHbrSMjlUofkp50sSpBw2PJjUqU.zS
+#secret
+
+dn: uid=notallowed,ou=people,dc=obssmentorship,dc=com
+objectclass: top
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+cn: Not Allowed
+sn: NA
+uid: notallowed
+userPassword: $2a$10$MF7hYnWLeLT66gNccBgxaONZHbrSMjlUofkp50sSpBw2PJjUqU.zS
+#secret
+
+dn: uid=admin,ou=people,dc=obssmentorship,dc=com
+objectclass: top
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+cn: Admin
+sn: Admin
+uid: admin
+userPassword: $2a$10$MF7hYnWLeLT66gNccBgxaONZHbrSMjlUofkp50sSpBw2PJjUqU.zS
+
+#Groups
+dn: cn=user,ou=groups,dc=obssmentorship,dc=com
+objectclass: top
+objectclass: groupOfUniqueNames
+cn: users
+ou: user
+uniqueMember: uid=mustafa,ou=people,dc=obssmentorship,dc=com
+uniqueMember: uid=sinem,ou=people,dc=obssmentorship,dc=com
+uniqueMember: uid=sibel,ou=people,dc=obssmentorship,dc=com
+uniqueMember: uid=gulbike,ou=people,dc=obssmentorship,dc=com
+
+dn: cn=admin,ou=groups,dc=obssmentorship,dc=com
+objectclass: top
+objectclass: groupOfUniqueNames
+cn: admins
+ou: admin
+uniqueMember: uid=admin,ou=people,dc=obssmentorship,dc=com

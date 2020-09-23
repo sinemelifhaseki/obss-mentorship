@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>OBSS MENTORSHIP | Dashboard</title>
+    <!-- Title bar icon -->
+    <link rel = "shortcut icon" href ="../img/icon.svg"    type = "image/svg">
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Fauna+One|Lobster|Fugaz+One" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="../../css/dashboard.css" rel="stylesheet">
+    <link href="../../css/cover.css" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="cover-container d-flex h-100 p-2 mx-auto flex-column">
+    <header class="masthead mb-auto">
+        <div class="inner">
+            <!-- <h3 class="masthead-brand">OBSS MENTORSHIP</h3>-->
+            <nav class="nav nav-masthead justify-content-center">
+                <a class="nav-link" href="/user/">Ana Sayfa</a>
+                <a class="nav-link" href="/user/user-dashboard">Dashboard <i class="fas fa-home"></i></a>
+                <a class="nav-link active" href="/user/apply-as-mentor">Mentor Ol <i class="fas fa-file-signature"></i></a>
+                <a class="nav-link" href="/user/search-mentor">Mentor arama <i class="fas fa-search"></i></a>
+                <a class="nav-link" href="/logout">Oturumu kapat <i class="fas fa-sign-out-alt"></i></a>
+            </nav>
+        </div>
+    </header>
+
+    <main role="main" class="inner cover">
+        <h1 class="cover-heading">Tüm başvurularınız burada.</h1>
+        <p class="lead jumbotron-body">Yaptığınız başvurulardan beklemede olanlar ve kabul edilenler hemen aşağıda.</p>
+        <div>
+            <p class="lead">
+                <a href="/user/apply-as-mentor" class="btn btn-lg btn-secondary">Yeni başvuru</a>
+            </p>
+        </div>
+    </main>
+
+    <div class="alert alert-info alert-dismissible fade show" role="alert">
+        <strong>Aman dikkat!</strong> Eğer seçtiğiniz konu ve alt konular uymuyorsa veya aynı başvuruyu daha önce yapmışsanız başvurunuz eklenmez!
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div class="row">
+        <div th:switch="${accepted}" class="col-md-12">
+            <h2 class="jumbotron-body">Kabul Edildi</h2>
+            <h2 class="jumbotron-body" th:case="null">Henüz kabul edilen başvurunuz yok :(</h2>
+            <div th:case="*" class="table-responsive">
+                <table class="table table-striped table-sm">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th  style="background-color: #030050">Konu</th>
+                        <th  style="background-color: #030050">Alt Konu</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="accept : ${accepted}">
+                        <td class="jumbotron-td" th:text="${accept.topic.title}"></td>
+                        <td class="jumbotron-td" th:text="${accept.subtopic.title}"></td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div  th:switch="${sentapplications}"  class="col-md-12">
+            <h2 class="jumbotron-body">Beklemede</h2>
+            <h2 class="jumbotron-body" th:case="null">Beklemede olan başvurunuz yok.</h2>
+            <div th:case="*" class="table-responsive">
+                <table class="table table-striped table-sm">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th  style="background-color: #030050">Konu</th>
+                        <th  style="background-color: #030050">Alt Konu</th>
+                        <th  style="background-color: #030050">Tecrübeleri Düzenle</th>
+                        <th  style="background-color: #030050">Sil</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="sentapplication : ${sentapplications}">
+                        <td class="jumbotron-td" th:text="${sentapplication.topic.title}"></td>
+                        <td class="jumbotron-td" th:text="${sentapplication.subtopic.title}"></td>
+                        <td><a th:href="@{/user/edit-application/{id}(id=${sentapplication.id})}"><i class="fas fa-edit ml-2"></i></a></td>
+                        <td><a th:href="@{/user/delete-application/{id}(id=${sentapplication.id})}"><i class="fas fa-trash-alt ml-2"></i></a></td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <footer class="mastfoot mt-auto">
+        <div class="inner">
+            <p></p>
+        </div>
+    </footer>
+</div>
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+<script src="../../js/popper.min.js"></script>
+<script src="../../js/bootstrap.min.js"></script>
+
+<!-- Icons -->
+<script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+<script>
+      feather.replace()
+</script>
+
+<script>
+    $('.alert').alert()
+</script>
+
+
+</body>
+</html>

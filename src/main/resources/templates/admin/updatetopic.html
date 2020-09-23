@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>OBSS MENTORSHIP | Admin Dashboard</title>
+    <!-- Title bar icon -->
+    <link rel = "shortcut icon" href ="../img/icon.svg"    type = "image/svg">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <!-- Icon Library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Fauna+One|Lobster|Fugaz+One" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="../../css/dashboard.css" rel="stylesheet">
+    <link href="../../css/cover.css" rel="stylesheet">
+</head>
+
+<body class="text-center">
+<div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+    <header class="masthead mb-auto">
+        <div class="inner">
+            <!-- <h3 class="masthead-brand">OBSS MENTORSHIP</h3>-->
+            <nav class="nav nav-masthead justify-content-center">
+                <a class="nav-link" href="/admin/">Ana Sayfa</a>
+                <a class="nav-link" href="/admin/dashboard">Dashboard <i class="fas fa-home"></i></a>
+                <a class="nav-link active" href="/admin/topiclist">Mentorluk Konuları <i class="fas fa-file-signature"></i></a>
+                <a class="nav-link" href="/admin/manage-mentors">Mentorları yönet <i class="fas fa-users-cog"></i></a>
+                <a class="nav-link" href="/logout">Oturumu kapat <i class="fas fa-sign-out-alt"></i></a>
+            </nav>
+        </div>
+    </header>
+
+
+    <main role="main" class="inner cover">
+        <h1 class="cover-heading" >Konu düzenleme</h1>
+        <p class="lead jumbotron-body">Yeni bir isim girin.</p>
+        <p class="lead">
+            <a href="/admin/topiclist"  class="btn btn-lg btn-secondary">Konu listesine geri dön</a>
+        </p>
+    </main>
+
+    <div class="container">
+        <div class="col-lg-12">
+            <form action="#" th:action="@{/admin/edit-topic/{id}(id=${topic.id})}" th:object="${topic}" method="post">
+                <input class="form-control" type="text" th:field="*{title}" placeholder="Konu adı girin"/>
+
+                <p>
+                    <input class="btn btn-secondary my-2" type="submit" value="Kaydet" />
+                </p>
+            </form>
+        </div>
+    </div>
+
+
+    <footer class="mastfoot mt-auto">
+        <div class="inner">
+            <p></p>
+        </div>
+    </footer>
+</div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+<script src="../js/popper.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+
+<!-- Search box script -->
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+
+<!-- Icons -->
+<script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+<script>
+      feather.replace()
+    </script>
+
+
+</body>
+</html>
